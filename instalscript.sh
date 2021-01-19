@@ -1,5 +1,5 @@
 #!/bin/bash
-###19-01-2021
+#19-01-2021
 #sudo apt-get update  &>/dev/null
 #sudo apt-get wget -y &>/dev/null
 killall apt apt-get
