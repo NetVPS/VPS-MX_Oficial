@@ -1,5 +1,5 @@
 # VPS-MX_Oficial
-Script Manager de VPS
+Script Manager de VPS\n
 ++++ Este es un script para la administracion de Cuentas de Tipo:
 -SSH
 -SSL
