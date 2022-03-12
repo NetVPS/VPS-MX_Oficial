@@ -1,0 +1,11 @@
+#!/bin/bash
+NOM="$(less /etc/VPS-MX/controlador/nombre.log)"
+NOM1="$(echo $NOM)"
+IDB=`less /etc/VPS-MX/controlador/IDT.log` > /dev/null 2>&1
+IDB1=`echo $IDB` > /dev/null 2>&1
+KEY="862633455:AAEgkSywlAHQQOMXzGHJ13gctV6wO1hm25Y"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+MSG="⚠️ AVISO DE VPS: $NOM1 ⚠️
+❗️ VPS REINICIADA ❗️
+🔰 INICIO EXITOSO 🔰 "
+curl -s --max-time 10 -d "chat_id=$IDB1&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null

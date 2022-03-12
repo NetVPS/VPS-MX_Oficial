@@ -1,0 +1,54 @@
+#!/bin/bash
+
+expirados () {
+VPSsec=$(date +%s)
+local HOST="/etc/VPS-MX/RegV2ray"
+local HOST2="/etc/VPS-MX/RegV2ray"
+local RETURN="$(cat $HOST|cut -d'|' -f2)"
+local IDEUUID="$(cat $HOST|cut -d'|' -f1)"
+if [[ -z $RETURN ]]; then
+echo ""
+return 0
+else
+i=1
+while read hostreturn ; do
+delbug () {
+invaliduuid () {
+exit
+}
+[[ $(sed -n '/'${hostreturn}'/=' /etc/v2ray/config.json|head -1) ]] || invaliduuid
+lineP=$(sed -n '/'${hostreturn}'/=' /etc/v2ray/config.json)
+linePre=$(sed -n '/'${hostreturn}'/=' /etc/VPS-MX/RegV2ray)
+sed -i "${linePre}d" /etc/VPS-MX/RegV2ray
+numl1=2
+let resta=$lineP-$numl1
+sed -i "${resta}d" /etc/v2ray/config.json
+sed -i "${resta}d" /etc/v2ray/config.json
+sed -i "${resta}d" /etc/v2ray/config.json
+sed -i "${resta}d" /etc/v2ray/config.json
+sed -i "${resta}d" /etc/v2ray/config.json
+}
+DateExp="$(cat /etc/VPS-MX/RegV2ray|grep -w "$hostreturn"|cut -d'|' -f3)"
+if [[ ! -z $DateExp ]]; then             
+DataSec=$(date +%s --date="$DateExp")
+[[ "$VPSsec" -gt "$DataSec" ]] && EXPTIME= delbug  || EXPTIME="\e[92m[$(($(($DataSec - $VPSsec)) / 86400))]\e[97m Dias"
+else
+EXPTIME="\e[91m[ S/R ]"
+fi 
+local contador_secuencial+="\e[93m$hostreturn \n"             
+      if [[ $i -gt 30 ]]; then
+	      echo -e "$contador_secuencial"
+	  unset contador_secuencial
+	  unset i
+	  fi
+let i++
+done <<< "$IDEUUID"
+
+[[ ! -z $contador_secuencial ]] && {
+linesss=$(cat /etc/VPS-MX/RegV2ray | wc -l)
+	      echo -e "$contador_secuencial "
+	}
+fi
+}
+expirados
+v2ray restart > /dev/null 2>&1

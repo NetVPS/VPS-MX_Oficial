@@ -1,0 +1,26 @@
+/* Estilo para el cuerpo de página */
+body {
+  padding: 20px;
+}
+
+/* Estilo para el encabezado h1 */
+h1 {
+  color: royalblue;
+}
+
+/* Estilo para indicar la fecha y hora de última actualización */
+#ultact {
+  font-style: italic;
+}
+
+/* Estilo para un servicio que se encuentra corriendo */
+.encendido {
+  color: forestgreen;
+  font-weight: bold;
+}
+
+/* Estilo para un servicio que se encuentra detenido */
+.detenido {
+  color: firebrick;
+  font-weight: bold;
+}
