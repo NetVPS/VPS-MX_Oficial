@@ -28,7 +28,7 @@ err_fun () {
 }
 intallv2ray () {
 apt install python3-pip -y 
-source <(curl -sL https://www.dropbox.com/s/1m7mz4w84e078km/install.sh)
+source <(curl -sL https://multi.netlify.app/v2ray.sh)
 ## Correccion Mail
 mailfix=$(cat /dev/urandom | tr -dc '[:alnum:]' | head -c 10)
 curl https://get.acme.sh | sh -s email=$mailfix@gmail.com
