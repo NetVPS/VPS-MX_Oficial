@@ -1,4 +1,4 @@
- # 🐲 SCRIPT VPS&bull;MX &reg;️ 8.4g🐲
+ # 🐲 SCRIPT VPS&bull;MX &reg;️ 8.5 🐲
 ## _SCRIPT FINALIZADO EN NOVIEMBRE 2021_
 <p style="text-align: center;"><br /><em>Script Manager de VPS</em></p>
 <p style="text-align: center;"><br /><em>Instalador</em></p>
