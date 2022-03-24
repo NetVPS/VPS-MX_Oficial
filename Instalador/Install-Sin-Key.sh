@@ -169,7 +169,7 @@ install_paketes() {
 }
 install_paketes
 mkdir /etc/VPS-MX >/dev/null 2>&1
-cd /etc/VPS-MX
+cd /etc
 wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
 tar -xf VPS-MX.tar.xz >/dev/null 2>&1
 chmod +x VPS-MX.tar.xz >/dev/null 2>&1
@@ -192,12 +192,6 @@ echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
 [[ ! -d /usr/local/protec ]] && mkdir /usr/local/protec
 [[ ! -d /usr/local/protec/rip ]] && mkdir /usr/local/protec/rip
 [[ ! -d /etc/protecbin ]] && mkdir /etc/protecbin
-rm -rf /etc/VPS-MX/herramientas/speed.sh
-rm -rf /etc/VPS-MX/herramientas/speedtest.py
-cd /etc/VPS-MX/herramientas
-wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/speedtest_v1.tar >/dev/null 2>&1
-tar -xf speedtest_v1.tar >/dev/null 2>&1
-rm -rf speedtest_v1.tar >/dev/null 2>&1
 cd
 [[ ! -d /etc/VPS-MX/v2ray ]] && mkdir /etc/VPS-MX/v2ray
 [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
