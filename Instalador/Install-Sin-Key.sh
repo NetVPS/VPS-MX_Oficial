@@ -8,6 +8,12 @@ myint=$(ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}')
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
 rm -rf /usr/local/lib/systemubu1 &>/dev/null
+rm -rf /etc/versin_script &> /dev/null
+v1=$(curl -sSL "https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version")
+echo "$v1" > /etc/versin_script
+[[ ! -e /etc/versin_script ]] && echo 1 > /etc/versin_script
+v22=$(cat /etc/versin_script)
+vesaoSCT="\033[1;31m [ \033[1;32m($v22)\033[1;97m\033[1;31m ]" 
 ### COLORES Y BARRA
 msg() {
   BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
@@ -48,11 +54,9 @@ install_paketes() {
   clear && clear
   ### PAQUETES PRINCIPALES
   msg -bar2
-  msg -ama "  [ SCRIPT-FREE  \033[1;97m ❌ MOD By @Kalix1 ❌\033[1;33m ]"
-  msg -bar
-  echo -e "\033[97m"
-  echo -e "  \033[41m    -- INSTALACION DE PAQUETES PARA VPS-MX --    \e[49m"
-  echo -e "\033[97m"
+  echo -e " \e[5m\033[1;100m   =====>> ►► 🐲 SCRIPT - VPS•MX  🐲 ◄◄ <<=====   \033[1;37m"
+  msg -bar2
+  msg -ama "   PREPARANDO INSTALACION | VERSION: $vesaoSCT"
   msg -bar
   #grep
   apt-get install netcat -y &>/dev/null
@@ -165,7 +169,7 @@ install_paketes() {
 }
 install_paketes
 mkdir /etc/VPS-MX >/dev/null 2>&1
-cd /etc/
+cd /etc/VPS-MX
 wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
 tar -xf VPS-MX.tar.xz >/dev/null 2>&1
 chmod +x VPS-MX.tar.xz >/dev/null 2>&1
@@ -190,7 +194,7 @@ echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
 [[ ! -d /etc/protecbin ]] && mkdir /etc/protecbin
 rm -rf /etc/VPS-MX/herramientas/speed.sh
 rm -rf /etc/VPS-MX/herramientas/speedtest.py
-#
+cd /etc/VPS-MX/herramientas
 wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/speedtest_v1.tar >/dev/null 2>&1
 tar -xf speedtest_v1.tar >/dev/null 2>&1
 rm -rf speedtest_v1.tar >/dev/null 2>&1
@@ -199,15 +203,16 @@ cd
 [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
 [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
 [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
-msg -ama "               Finalizando Instalacion" && msg bar2
+msg -bar 
+echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
 touch /usr/share/lognull &>/dev/null
 wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
 chmod +x /bin/resetsshdrop
 wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
 grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
-v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version") 
-echo "$v1" > /etc/versin_script 
+v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version")
+echo "$v1" >/etc/versin_script
 msg -bar2
 echo '#!/bin/sh -e' >/etc/rc.local
 sudo chmod +x /etc/rc.local
@@ -230,8 +235,8 @@ echo 'echo -e "\t\e[1;33mVERSION: \e[1;31m$(cat /etc/versin_script_new)"' >>.bas
 echo 'echo "" ' >>.bashrc
 echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
 echo 'echo ""' >>.bashrc
-echo -e "         COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
-echo -e "  \033[1;41m               sudo VPSMX o menu             \033[0;37m" && msg -bar2
+echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
 rm -rf /usr/bin/pytransform &>/dev/null
 rm -rf VPS-MX.sh
 rm -rf lista-arq
