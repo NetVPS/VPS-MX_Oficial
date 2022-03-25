@@ -8,12 +8,12 @@ myint=$(ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}')
 rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
 rm -rf /usr/local/lib/systemubu1 &>/dev/null
-rm -rf /etc/versin_script &> /dev/null
+rm -rf /etc/versin_script &>/dev/null
 v1=$(curl -sSL "https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version")
-echo "$v1" > /etc/versin_script
-[[ ! -e /etc/versin_script ]] && echo 1 > /etc/versin_script
+echo "$v1" >/etc/versin_script
+[[ ! -e /etc/versin_script ]] && echo 1 >/etc/versin_script
 v22=$(cat /etc/versin_script)
-vesaoSCT="\033[1;31m [ \033[1;32m($v22)\033[1;97m\033[1;31m ]" 
+vesaoSCT="\033[1;31m [ \033[1;32m($v22)\033[1;97m\033[1;31m ]"
 ### COLORES Y BARRA
 msg() {
   BRAN='\033[1;37m' && VERMELHO='\e[31m' && VERDE='\e[32m' && AMARELO='\e[33m'
@@ -168,17 +168,53 @@ install_paketes() {
 
 }
 install_paketes
-mkdir /etc/VPS-MX >/dev/null 2>&1
-cd /etc
-wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
-tar -xf VPS-MX.tar.xz >/dev/null 2>&1
-chmod +x VPS-MX.tar.xz >/dev/null 2>&1
-rm -rf VPS-MX.tar.xz
-cd
-chmod -R 755 /etc/VPS-MX
-rm -rf /etc/VPS-MX/MEUIPvps
-MEU_IP=$(wget -qO- ifconfig.me)
-echo "$MEU_IP" >/etc/VPS-MX/MEUIPvps
+
+install_oficial() {
+
+  mkdir /etc/VPS-MX >/dev/null 2>&1
+  cd /etc
+  wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
+  tar -xf VPS-MX.tar.xz >/dev/null 2>&1
+  chmod +x VPS-MX.tar.xz >/dev/null 2>&1
+  rm -rf VPS-MX.tar.xz
+  cd
+  chmod -R 755 /etc/VPS-MX
+  rm -rf /etc/VPS-MX/MEUIPvps
+}
+install_mod() {
+    mkdir /etc/VPS-MX >/dev/null 2>&1
+  cd /etc
+  wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/VPS-MX.tar.xz >/dev/null 2>&1
+  tar -xf VPS-MX.tar.xz >/dev/null 2>&1
+  chmod +x VPS-MX.tar.xz >/dev/null 2>&1
+  rm -rf VPS-MX.tar.xz
+  cd
+  chmod -R 755 /etc/VPS-MX
+  rm -rf /etc/VPS-MX/MEUIPvps
+}
+
+msg -bar
+echo -e "\e[1;93m          CUAL VPS-MX DESEA INSTALAR "
+msg -bar
+echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
+echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.5x MOD \e[97m \n"
+msg -bar
+echo -ne "\033[1;97mDigite solo el numero segun su respuesta:\e[32m "
+read opcao
+case $opcao in
+1)
+  install_oficial
+  ;;
+2)
+  install_mod
+  ;;
+esac
+msg -bar
+echo -ne "\033[1;37m DIGITE UN SLOGAN: \e[1;32m" && read slogan
+tput cuu1 && tput dl1
+echo -e "\e[1;93m >> REGISTRANDO:\e[1;31m$slogan"
+echo "$slogan" >/etc/VPS-MX/message.txt
+
 echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
 echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
 [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
@@ -199,7 +235,7 @@ cd
 [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
 [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
 [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
-msg -bar 
+msg -bar
 echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
 touch /usr/share/lognull &>/dev/null
 wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
