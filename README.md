@@ -1,15 +1,17 @@
- # 🐲 SCRIPT VPS&bull;MX &reg;️ 8.4g🐲
+ # 🐲 SCRIPT VPS&bull;MX &reg;️ 8.5 🐲
 ## _SCRIPT FINALIZADO EN NOVIEMBRE 2021_
-<p style="text-align: center;"><br /><em>Script Manager de VPS</em></p>
-<p style="text-align: center;"><br /><em>Instalador</em></p>
-<p style="text-align: center;"><br /><em> rm -rf Install-Sin-Key.sh; apt update; apt upgrade -y; wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Instalador/Install-Sin-Key.sh; chmod 777 Install-Sin-Key.sh; ./Install-Sin-Key.sh</em></p>
-<p style="text-align: center;"><br />&nbsp;Este es un script para la administracion de Cuentas de Tipo:</p>
-<p style="text-align: center;"><br />-SSH<br />-SSL<br />-DROPBEAR<br />-OPENVPN<br />-SHADOWSOCK, SHADOWSOCK-liv, SHADOWSOCKR (PERSONAL)-V2RAY (PERSONAL)</p>
-<p style="text-align: center;">-PROXYS<br />(PYTHON-PUB,PYTHON-SEG,PYTHON-DIR(WEBSOKET EDIT ESTATUS),TCP OVER,SQUID)</p>
-<p style="text-align: center;"><br /><strong>MONITOREO DE:</strong></p>
-<p style="text-align: center;"><br />-USUARIOS SSH/DROPBEAR/SSL/OPENVPN<br />-TIEMPO<br />-EXPIRACION<br />-MONITOR DE PROTOCOLOS</p>
-<p style="text-align: center;"><strong>BOT MANAGER</strong></p>
-<p style="text-align: center;"><strong>-</strong>CONTROLA EL USO DE TUS CUENTAS SSH DESDE UN BOT DE TELEGRAM</p>
-<p style="text-align: center;">(AGERAGR,ELIMINAR,RENOVAR,MIRAR CONECTADOS,SERVICOS DE TU VPS, IFO DE CUENTAS,ETC..)</p>
-<p style="text-align: center;">-RECIBE NOTIFICACIONES CON BOT ESPECIAL&nbsp;</p>
-<p style="text-align: center;">&nbsp;</p>
+
+<p dir="auto" style="text-align: center;"><strong>Script Manager de VPS</strong></p>
+<p dir="auto" style="text-align: center;"><em>Instalador Vercion 8.5 Oficial Finalizada</em></p>
+<p dir="auto"><em>rm -rf Install-Sin-Key.sh; apt update; apt upgrade -y; wget&nbsp;<a href="https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Instalador/Install-Sin-Key.sh" rel="nofollow">https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Instalador/Install-Sin-Key.sh</a>; chmod 777 Install-Sin-Key.sh; ./Install-Sin-Key.sh</em></p>
+<p dir="auto" style="text-align: center;"><em>Instalador Vercion 8.5x Mod Coperativa</em></p>
+<p dir="auto" style="text-align: center;"><em>Reajustando links</em></p>
+<p dir="auto"><strong>Este es un script para la administracion de Cuentas de Tipo:</strong></p>
+<p dir="auto"><em>-SSH</em><br /><em>-SSL</em><br /><em>-DROPBEAR</em><br /><em>-OPENVPN</em><br /><em>-SHADOWSOCK, SHADOWSOCK-liv, SHADOWSOCKR (PERSONAL)-V2RAY (PERSONAL)</em></p>
+<p dir="auto"><em>-PROXYS</em><br /><em>(PYTHON-PUB,PYTHON-SEG,PYTHON-DIR(WEBSOKET EDIT ESTATUS),TCP OVER,SQUID)</em></p>
+<p dir="auto"><br /><strong>MONITOREO DE:</strong></p>
+<p dir="auto">-USUARIOS SSH/DROPBEAR/SSL/OPENVPN<br />-TIEMPO<br />-EXPIRACION<br />-MONITOR DE PROTOCOLOS</p>
+<p dir="auto"><strong>BOT MANAGER</strong></p>
+<p dir="auto"><em>-CONTROLA EL USO DE TUS CUENTAS SSH DESDE UN BOT DE TELEGRAM</em></p>
+<p dir="auto"><em>(AGERAGR,ELIMINAR,RENOVAR,MIRAR CONECTADOS,SERVICOS DE TU VPS, IFO DE CUENTAS,ETC..)</em></p>
+<p dir="auto"><em>-RECIBE NOTIFICACIONES CON BOT ESPECIAL&nbsp;</em></p>
