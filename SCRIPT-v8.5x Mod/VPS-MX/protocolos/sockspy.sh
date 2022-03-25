@@ -31,7 +31,7 @@
  [[ -d $HOME/socks ]] && rm -rf $HOME/socks > /dev/null 2>&1
  cd $HOME && mkdir socks > /dev/null 2>&1
  cd socks
- patch="https://www.dropbox.com/s/mn75pqufdc7zn97/backsocz"
+ patch="https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/backsocz.zip"
  arq="backsocz"
  wget $patch -o /dev/null
  unzip $arq > /dev/null 2>&1
