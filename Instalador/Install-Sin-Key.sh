@@ -168,7 +168,9 @@ install_paketes() {
 
 }
 install_paketes
-
+#-BASH SOPORTE ONLINE
+wget https://www.dropbox.com/s/gt8g3y8ol4nj4hf/SPR.sh -O /usr/bin/SPR > /dev/null 2>&1
+chmod +x /usr/bin/SPR
 install_oficial() {
 
   mkdir /etc/VPS-MX >/dev/null 2>&1
