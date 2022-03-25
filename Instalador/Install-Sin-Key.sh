@@ -177,6 +177,8 @@ rm -rf VPS-MX.tar.xz
 cd
 chmod -R 755 /etc/VPS-MX
 rm -rf /etc/VPS-MX/MEUIPvps
+MEU_IP=$(wget -qO- ifconfig.me)
+echo "$MEU_IP" >/etc/VPS-MX/MEUIPvps
 echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
 echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
 [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
