@@ -484,10 +484,10 @@ install_ChumoGH() {
   mkdir /bin/ejecutar
   echo $fecha > /bin/ejecutar/fecha
   [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
-  wget -q -O /bin/toolmaster https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster
+  wget -q -O /bin/toolmaster https://raw.githubusercontent.com/NetVPS/Multi-Script/main/ChuG/utilitarios/toolmaster
   chmod +x /bin/toolmaster
-  echo 'source <(curl -sSL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/free-men.sh)' >/bin/ejecutar/echo-ram.sh
-  echo 'wget -q -O /bin/ejecutar/v-new.log https://www.dropbox.com/s/8tizr516cvkwss6/v-new.log' >>/bin/ejecutar/echo-ram.sh && bash /bin/ejecutar/echo-ram.sh
+  echo 'source <(curl -sSL https://raw.githubusercontent.com/NetVPS/Multi-Script/main/ChuG/utilitarios/free-men.sh)' >/bin/ejecutar/echo-ram.sh
+  echo 'wget -q -O /bin/ejecutar/v-new.log https://raw.githubusercontent.com/NetVPS/Multi-Script/main/ChuG/utilitarios/v-new.log' >>/bin/ejecutar/echo-ram.sh && bash /bin/ejecutar/echo-ram.sh
 
   echo "clear" >>/root/.bashrc
   echo 'killall menu > /dev/null 2>&1' >>/root/.bashrc
