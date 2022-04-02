@@ -280,6 +280,7 @@ install_oficial() {
   rm -rf /etc/versin_script &>/dev/null
   v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version")
   echo "$v1" >/etc/versin_script
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version &>/dev/null
   msg -bar2
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
@@ -360,6 +361,7 @@ install_mod() {
   rm -rf /etc/versin_script &>/dev/null
   v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version")
   echo "$v1" >/etc/versin_script
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version &>/dev/null
   msg -bar2
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
