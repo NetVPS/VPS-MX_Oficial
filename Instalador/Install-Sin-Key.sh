@@ -123,7 +123,7 @@ repo() {
 }
 
 dependencias() {
-  soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat"
+  soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof pv boxes nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat"
 
   for i in $soft; do
     leng="${#i}"
@@ -231,12 +231,13 @@ chmod +x /usr/bin/SPR
 
 #VPS-MX 8.5 OFICIAL
 install_oficial() {
-  clear && clear 
-    msg -bar
-    echo -ne "\033[1;97m Digite su slogan \033[1;32m" && read slogan
-    tput cuu1 && tput dl1
-    echo -e "$slogan"
-    msg -bar
+  clear && clear
+  msg -bar
+  echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
+  tput cuu1 && tput dl1
+  echo -e "$slogan"
+  msg -bar
+  clear && clear
   mkdir /etc/VPS-MX >/dev/null 2>&1
   cd /etc
   wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
@@ -248,6 +249,7 @@ install_oficial() {
   rm -rf /etc/VPS-MX/MEUIPvps
   echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
   echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
+  echo "$slogan" >/etc/VPS-MX/message.txt
   [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
   [[ ! -d /usr/local/lib/ubuntn ]] && mkdir /usr/local/lib/ubuntn
   [[ ! -d /usr/local/lib/ubuntn/apache ]] && mkdir /usr/local/lib/ubuntn/apache
@@ -267,11 +269,11 @@ install_oficial() {
   [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
   [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
   msg -bar
+
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   touch /usr/share/lognull &>/dev/null
   wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
-  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
   grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
   echo "PasswordAuthentication yes" -e "\e[1;92m             >> INSTALACION COMPLETADA <<" >>/etc/ssh/sshd_configecho && msg bar2
   rm -rf /usr/local/lib/systemubu1 &>/dev/null
@@ -292,6 +294,7 @@ install_oficial() {
   echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
   echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
   echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
+  echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version &>/dev/null' >>.bashrc
   echo 'echo "" ' >>.bashrc
   echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
   echo 'echo "" ' >>.bashrc
@@ -310,6 +313,13 @@ install_oficial() {
 }
 #VPS-MX 8.6 MOD
 install_mod() {
+  clear && clear
+  msg -bar
+  echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
+  tput cuu1 && tput dl1
+  echo -e "$slogan"
+  msg -bar
+  clear && clear
   mkdir /etc/VPS-MX >/dev/null 2>&1
   cd /etc
   wget https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/VPS-MX.tar.xz >/dev/null 2>&1
@@ -321,6 +331,7 @@ install_mod() {
   rm -rf /etc/VPS-MX/MEUIPvps
   echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
   echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
+  echo "$slogan" >/etc/VPS-MX/message.txt
   [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
   [[ ! -d /usr/local/lib/ubuntn ]] && mkdir /usr/local/lib/ubuntn
   [[ ! -d /usr/local/lib/ubuntn/apache ]] && mkdir /usr/local/lib/ubuntn/apache
@@ -344,7 +355,6 @@ install_mod() {
   touch /usr/share/lognull &>/dev/null
   wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
-  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
   grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
   echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
   rm -rf /usr/local/lib/systemubu1 &>/dev/null
@@ -365,6 +375,7 @@ install_mod() {
   echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
   echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
   echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
+  echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version &>/dev/null' >>.bashrc
   echo 'echo "" ' >>.bashrc
   echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
   echo 'echo "" ' >>.bashrc
@@ -386,6 +397,13 @@ install_latam() {
 }
 #LATAM ADMRufu 31-03-2022
 install_ADMRufu() {
+  clear && clear
+  msg -bar
+  echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
+  tput cuu1 && tput dl1
+  echo -e "$slogan"
+  msg -bar
+  clear && clear
   mkdir /etc/ADMRufu >/dev/null 2>&1
   cd /etc
   wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/R9/ADMRufu.tar.xz >/dev/null 2>&1
@@ -397,14 +415,15 @@ install_ADMRufu() {
   ADMRufu="/etc/ADMRufu" && [[ ! -d ${ADMRufu} ]] && mkdir ${ADMRufu}
   ADM_inst="${ADMRufu}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
   SCPinstal="$HOME/install"
-
   rm -rf /usr/bin/menu
   rm -rf /usr/bin/adm
   rm -rf /usr/bin/ADMRufu
+  echo "$slogan" >/etc/ADMRufu/tmp/message.txt
   echo "${ADMRufu}/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
   echo "${ADMRufu}/menu" >/usr/bin/adm && chmod +x /usr/bin/adm
   echo "${ADMRufu}/menu" >/usr/bin/ADMRufu && chmod +x /usr/bin/ADMRufu
-  sed -i '/Rufu/d' /root/bash.bashrc
+  /bin/cp /etc/skel/.bashrc ~/
+  rm -rf /etc/bash.bashrc >/dev/null 2>&1
   [[ -z $(echo $PATH | grep "/usr/games") ]] && echo 'if [[ $(echo $PATH|grep "/usr/games") = "" ]]; then PATH=$PATH:/usr/games; fi' >>/etc/bash.bashrc
   echo '[[ $UID = 0 ]] && screen -dmS up /etc/ADMRufu/chekup.sh' >>/etc/bash.bashrc
   echo 'v=$(cat /etc/ADMRufu/vercion)' >>/etc/bash.bashrc
@@ -417,13 +436,101 @@ install_ADMRufu() {
   update-locale LANG=en_US.UTF-8 LANGUAGE=en
   clear
   title "-- ADMRufu INSTALADO --"
-
 }
-#CHUMOGH 
-install_ChumoGH(){
-echo "--PROX--"
+#CHUMOGH
+install_ChumoGH() {
+  clear && clear
+  msg -bar
+  echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
+  echo -ne "\033[1;97m Nombre del Servidor: \033[1;32m"&& read name
 
+  msg -bar
+  clear && clear
+  mkdir /etc/adm-lite >/dev/null 2>&1
+  cd /etc
+  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/ChuG/adm-lite.tar.xz >/dev/null 2>&1
+  tar -xf adm-lite.tar.xz >/dev/null 2>&1
+  chmod +x adm-lite.tar.xz >/dev/null 2>&1
+  rm -rf /etc/adm-lite.tar.xz
+  cd
+  chmod -R 755 /etc/adm-lite
+  /bin/cp /etc/skel/.bashrc ~/
+  rm -rf /etc/bash.bashrc >/dev/null 2>&1
+  echo "$slogan" >/etc/adm-lite/menu_credito
+  fecha=$(date +"%d-%m-%y")
+  dom='base64 -d'
+  SCPdir="/etc/adm-lite"
+  SCPinstal="$HOME/install"
+  SCPidioma="${SCPdir}"
+  SCPusr="${SCPdir}"
+  SCPfrm="${SCPdir}"
+  SCPinst="${SCPdir}"
+
+  cd /etc/adm-lite
+  echo "cd /etc/adm-lite && ./menu" >/bin/menu
+  echo "cd /etc/adm-lite && ./menu" >/bin/cgh
+  echo "cd /etc/adm-lite && ./menu" >/bin/adm
+  chmod +x /bin/menu
+  chmod +x /bin/cgh
+  chmod +x /bin/adm
+  cd $HOME
+  echo ""
+  rm -rf mkdir /bin/ejecutar >/dev/null
+  [[ -e /etc/adm-lite/menu_credito ]] && ress="$(cat </etc/adm-lite/menu_credito) " || ress="NULL ( no found ) "
+  chmod +x /etc/adm-lite/*
+  [[ -e ${SCPinstal}/v-local.log ]] && vv="$(cat <${SCPinstal}/v-local.log)" || vv="NULL"
+  #cd /etc/adm-lite && bash cabecalho --instalar
+  echo "verify" >$(echo -e $(echo 2f62696e2f766572696679737973 | sed 's/../\\x&/g;s/$/ /'))
+  fecha=$(date +"%d-%m-%y")
+  [[ -d /bin/ejecutar ]] && rm -rf /bin/ejecutar
+  [[ -e /etc/adm-lite/gerar.sh ]] && rm -f /etc/adm-lite/gerar.sh
+  mkdir /bin/ejecutar
+  [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
+  wget -q -O /bin/toolmaster https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster
+  chmod +x /bin/toolmaster
+  echo 'source <(curl -sSL https://raw.githubusercontent.com/ChumoGH/ChumoGH-Script/master/back/free-men.sh)' >/bin/ejecutar/echo-ram.sh
+  echo 'wget -q -O /bin/ejecutar/v-new.log https://www.dropbox.com/s/8tizr516cvkwss6/v-new.log' >>/bin/ejecutar/echo-ram.sh && bash /bin/ejecutar/echo-ram.sh
+
+  echo "clear" >>/root/.bashrc
+  echo 'killall menu > /dev/null 2>&1' >>/root/.bashrc
+  sed '/ChumoGH/ d' /root/.bashrc >/root/.bashrc.cp
+  sed '/echo/ d' /root/.bashrc.cp >/root/.bashrc
+  sed '/ejecutar/ d' /root/.bashrc >/root/.bashrc.cp
+  sed '/date/ d' /root/.bashrc.cp >/root/.bashrc
+  rm -f /root/.bashrc.cp
+  echo 'DATE=$(date +"%d-%m-%y")' >>/root/.bashrc
+  echo 'TIME=$(date +"%T")' >>/root/.bashrc
+  echo 'figlet -k ChumoGH | lolcat' >>/root/.bashrc
+  echo 'echo -e ""' >>/root/.bashrc
+  echo 'bash /bin/ejecutar/echo-ram.sh' >>/root/.bashrc
+  echo 'echo -e " Fecha de Instalacion : " $(cat < /bin/ejecutar/fecha)' >>/root/.bashrc
+  echo 'echo -e " Nombre del Servidor : $HOSTNAME"' >>/root/.bashrc
+  echo 'echo -e " Tiempo en Linea : $(uptime -p)"' >>/root/.bashrc
+  echo 'echo -e " Memoria Libre : $(cat < /bin/ejecutar/raml)"' >>/root/.bashrc
+  echo 'echo -e " Fecha del Servidor : $DATE"' >>/root/.bashrc
+  echo 'echo -e " Hora del Servidor : $TIME"' >>/root/.bashrc
+  echo 'echo -e ""' >>/root/.bashrc
+  echo 'echo -e " Bienvenido!"' >>.bashrc
+  echo 'echo -e "\033[1;43m Teclee cgh , menu o adm para ver el MENU\033[0m."' >>/root/.bashrc
+  echo 'echo -e ""' >>/root/.bashrc
+
+
+[[ -z $name ]] && { 
+rm -f /root/name 
+} || {
+echo $name > /etc/adm-lite/name
+chmod +x /etc/adm-lite/name
+echo $name > /root/name 
 }
+figlet $name
+opti=0
+echo 0 > /bin/ejecutar/val
+echo 0 > /bin/ejecutar/uskill
+echo "desactivado" > /bin/ejecutar/val1
+[[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" > /bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
+echo "Verified【 $(cat /bin/ejecutar/menu_credito)" > /bin/ejecutar/exito
+}
+
 #MENUS
 echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.6x MOD \e[97m \n"
@@ -445,7 +552,7 @@ case $opcao in
   ;;
 4)
   install_ChumoGH
-  ;;  
+  ;;
 5)
   install_latam
   ;;
