@@ -268,9 +268,6 @@ install_oficial() {
   [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
   [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
   [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
-  msg -bar
-
-  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   touch /usr/share/lognull &>/dev/null
   wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
@@ -281,7 +278,6 @@ install_oficial() {
   v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version")
   echo "$v1" >/etc/versin_script
   wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version &>/dev/null
-  msg -bar2
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
   echo "sudo resetsshdrop" >>/etc/rc.local
@@ -303,12 +299,15 @@ install_oficial() {
   echo 'echo "" ' >>.bashrc
   echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
   echo 'echo ""' >>.bashrc
-  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
-  echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
   rm -rf /usr/bin/pytransform &>/dev/null
   rm -rf VPS-MX.sh
   rm -rf lista-arq
   service ssh restart &>/dev/null
+  msg -bar
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  msg -bat
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 
 }
 #VPS-MX 8.6 MOD
@@ -350,8 +349,6 @@ install_mod() {
   [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
   [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
   [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
-  msg -bar
-  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   touch /usr/share/lognull &>/dev/null
   wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
@@ -362,7 +359,6 @@ install_mod() {
   v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version")
   echo "$v1" >/etc/versin_script
   wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version &>/dev/null
-  msg -bar2
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
   echo "sudo resetsshdrop" >>/etc/rc.local
@@ -384,12 +380,14 @@ install_mod() {
   echo 'echo "" ' >>.bashrc
   echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
   echo 'echo ""' >>.bashrc
-  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
-  echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
   rm -rf /usr/bin/pytransform &>/dev/null
   rm -rf VPS-MX.sh
   rm -rf lista-arq
   service ssh restart &>/dev/null
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  msg -bat
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
 #LATAM 11.g
 install_latam() {
@@ -433,14 +431,17 @@ install_ADMRufu() {
 
   update-locale LANG=en_US.UTF-8 LANGUAGE=en
   clear
-  title "-- ADMRufu INSTALADO --"
+    echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  msg -bat
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
 #CHUMOGH
 install_ChumoGH() {
   clear && clear
   msg -bar
   echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
-  echo -ne "\033[1;97m Nombre del Servidor: \033[1;32m"&& read name
+  echo -ne "\033[1;97m Nombre del Servidor: \033[1;32m" && read name
 
   msg -bar
   clear && clear
@@ -480,11 +481,11 @@ install_ChumoGH() {
   #cd /etc/adm-lite && bash cabecalho --instalar
   echo "verify" >$(echo -e $(echo 2f62696e2f766572696679737973 | sed 's/../\\x&/g;s/$/ /'))
   fecha=$(date +"%d-%m-%y")
-  
+
   [[ -d /bin/ejecutar ]] && rm -rf /bin/ejecutar
   [[ -e /etc/adm-lite/gerar.sh ]] && rm -f /etc/adm-lite/gerar.sh
   mkdir /bin/ejecutar
-  echo $fecha > /bin/ejecutar/fecha
+  echo $fecha >/bin/ejecutar/fecha
   [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
   wget -q -O /bin/toolmaster https://raw.githubusercontent.com/NetVPS/Multi-Script/main/ChuG/utilitarios/toolmaster
   chmod +x /bin/toolmaster
@@ -514,26 +515,28 @@ install_ChumoGH() {
   echo 'echo -e "\033[1;43m Teclee cgh , menu o adm para ver el MENU\033[0m."' >>/root/.bashrc
   echo 'echo -e ""' >>/root/.bashrc
 
-
-[[ -z $name ]] && { 
-rm -f /root/name 
-} || {
-echo $name > /etc/adm-lite/name
-chmod +x /etc/adm-lite/name
-echo $name > /root/name 
-}
-figlet $name
-opti=0
-echo 0 > /bin/ejecutar/val
-echo 0 > /bin/ejecutar/uskill
-echo "desactivado" > /bin/ejecutar/val1
-[[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" > /bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
-echo "Verified【 $(cat /bin/ejecutar/menu_credito)" > /bin/ejecutar/exito
+  [[ -z $name ]] && {
+    rm -f /root/name
+  } || {
+    echo $name >/etc/adm-lite/name
+    chmod +x /etc/adm-lite/name
+    echo $name >/root/name
+  }
+  opti=0
+  echo 0 >/bin/ejecutar/val
+  echo 0 >/bin/ejecutar/uskill
+  echo "desactivado" >/bin/ejecutar/val1
+  [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
+  echo "Verified【 $(cat /bin/ejecutar/menu_credito)" >/bin/ejecutar/exito
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  msg -bat
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
 
 #MENUS
-  /bin/cp /etc/skel/.bashrc ~/
-  rm -rf /etc/bash.bashrc >/dev/null 2>&1
+/bin/cp /etc/skel/.bashrc ~/
+rm -rf /etc/bash.bashrc >/dev/null 2>&1
 echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.6x MOD \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m3\e[1;93m]\033[1;31m > \033[1;97m INSTALAR ADMRufu MOD \e[97m \n"
