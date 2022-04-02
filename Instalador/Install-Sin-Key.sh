@@ -286,7 +286,6 @@ install_oficial() {
   echo "sudo resetsshdrop" >>/etc/rc.local
   echo "sleep 2s" >>/etc/rc.local
   echo "exit 0" >>/etc/rc.local
-  /bin/cp /etc/skel/.bashrc ~/
   echo 'clear' >>.bashrc
   echo 'echo ""' >>.bashrc
   echo 'echo -e "\t\033[91m __     ______  ____        __  ____  __ " ' >>.bashrc
@@ -367,7 +366,6 @@ install_mod() {
   echo "sudo resetsshdrop" >>/etc/rc.local
   echo "sleep 2s" >>/etc/rc.local
   echo "exit 0" >>/etc/rc.local
-  /bin/cp /etc/skel/.bashrc ~/
   echo 'clear' >>.bashrc
   echo 'echo ""' >>.bashrc
   echo 'echo -e "\t\033[91m __     ______  ____        __  ____  __ " ' >>.bashrc
@@ -422,8 +420,6 @@ install_ADMRufu() {
   echo "${ADMRufu}/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
   echo "${ADMRufu}/menu" >/usr/bin/adm && chmod +x /usr/bin/adm
   echo "${ADMRufu}/menu" >/usr/bin/ADMRufu && chmod +x /usr/bin/ADMRufu
-  /bin/cp /etc/skel/.bashrc ~/
-  rm -rf /etc/bash.bashrc >/dev/null 2>&1
   [[ -z $(echo $PATH | grep "/usr/games") ]] && echo 'if [[ $(echo $PATH|grep "/usr/games") = "" ]]; then PATH=$PATH:/usr/games; fi' >>/etc/bash.bashrc
   echo '[[ $UID = 0 ]] && screen -dmS up /etc/ADMRufu/chekup.sh' >>/etc/bash.bashrc
   echo 'v=$(cat /etc/ADMRufu/vercion)' >>/etc/bash.bashrc
@@ -482,9 +478,11 @@ install_ChumoGH() {
   #cd /etc/adm-lite && bash cabecalho --instalar
   echo "verify" >$(echo -e $(echo 2f62696e2f766572696679737973 | sed 's/../\\x&/g;s/$/ /'))
   fecha=$(date +"%d-%m-%y")
+  
   [[ -d /bin/ejecutar ]] && rm -rf /bin/ejecutar
   [[ -e /etc/adm-lite/gerar.sh ]] && rm -f /etc/adm-lite/gerar.sh
   mkdir /bin/ejecutar
+  echo $fecha > /bin/ejecutar/fecha
   [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
   wget -q -O /bin/toolmaster https://raw.githubusercontent.com/ChumoGH/chumogh-gmail.com/master/toolmaster
   chmod +x /bin/toolmaster
@@ -532,6 +530,8 @@ echo "Verified【 $(cat /bin/ejecutar/menu_credito)" > /bin/ejecutar/exito
 }
 
 #MENUS
+  /bin/cp /etc/skel/.bashrc ~/
+  rm -rf /etc/bash.bashrc >/dev/null 2>&1
 echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.6x MOD \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m3\e[1;93m]\033[1;31m > \033[1;97m INSTALAR ADMRufu MOD \e[97m \n"
