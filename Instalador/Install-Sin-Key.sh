@@ -379,10 +379,46 @@ install_mod() {
 install_latam() {
   echo "--PROX---"
 }
+#LATAM ADMRufu 31-03-2022
+install_ADMRufu() {
+  mkdir /etc/ADMRufu >/dev/null 2>&1
+  cd /etc
+  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/R9/ADMRufu.tar.xz >/dev/null 2>&1
+  tar -xf ADMRufu.tar.xz >/dev/null 2>&1
+  chmod +x ADMRufu.tar.xz >/dev/null 2>&1
+  rm -rf ADMRufu.tar.xz
+  cd
+  chmod -R 755 /etc/ADMRufu
+  ADMRufu="/etc/ADMRufu" && [[ ! -d ${ADMRufu} ]] && mkdir ${ADMRufu}
+  ADM_inst="${ADMRufu}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
+  SCPinstal="$HOME/install"
+
+  rm -rf /usr/bin/menu
+  rm -rf /usr/bin/adm
+  rm -rf /usr/bin/ADMRufu
+  echo "${ADMRufu}/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
+  echo "${ADMRufu}/menu" >/usr/bin/adm && chmod +x /usr/bin/adm
+  echo "${ADMRufu}/menu" >/usr/bin/ADMRufu && chmod +x /usr/bin/ADMRufu
+  sed -i '/Rufu/d' /root/bash.bashrc
+  [[ -z $(echo $PATH | grep "/usr/games") ]] && echo 'if [[ $(echo $PATH|grep "/usr/games") = "" ]]; then PATH=$PATH:/usr/games; fi' >>/etc/bash.bashrc
+  echo '[[ $UID = 0 ]] && screen -dmS up /etc/ADMRufu/chekup.sh' >>/etc/bash.bashrc
+  echo 'v=$(cat /etc/ADMRufu/vercion)' >>/etc/bash.bashrc
+  echo '[[ -e /etc/ADMRufu/new_vercion ]] && up=$(cat /etc/ADMRufu/new_vercion) || up=$v' >>/etc/bash.bashrc
+  echo -e "[[ \$(date '+%s' -d \$up) -gt \$(date '+%s' -d \$(cat /etc/ADMRufu/vercion)) ]] && v2=\"Nueva Vercion disponible: \$v >>> \$up\" || v2=\"Script Vercion: \$v\"" >>/etc/bash.bashrc
+  echo '[[ -e "/etc/ADMRufu/tmp/message.txt" ]] && mess1="$(less /etc/ADMRufu/tmp/message.txt)"' >>/etc/bash.bashrc
+  echo '[[ -z "$mess1" ]] && mess1="@Rufu99"' >>/etc/bash.bashrc
+  echo 'clear && echo -e "\n$(figlet -f big.flf "  ADMRufu")\n        RESELLER : $mess1 \n\n   Para iniciar ADMRufu escriba:  menu \n\n   $v2\n\n"|lolcat' >>/etc/bash.bashrc
+
+  update-locale LANG=en_US.UTF-8 LANGUAGE=en
+  clear
+  title "-- ADMRufu INSTALADO --"
+
+}
 #MENUS
 echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
 echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.6x MOD \e[97m \n"
-echo -ne " \e[1;93m [\e[1;32m3\e[1;93m]\033[1;31m > \033[1;97m INSTALAR LATAM 1.1g (PROX) \e[97m \n"
+echo -ne " \e[1;93m [\e[1;32m3\e[1;93m]\033[1;31m > \033[1;97m INSTALAR ADMRufu MOD \e[97m \n"
+echo -ne " \e[1;93m [\e[1;32m4\e[1;93m]\033[1;31m > \033[1;97m INSTALAR LATAM 1.1g (PROX) \e[97m \n"
 msg -bar
 echo -ne "\033[1;97mDigite solo el numero segun su respuesta:\e[32m "
 read opcao
@@ -394,6 +430,9 @@ case $opcao in
   install_mod
   ;;
 3)
+  install_ADMRufu
+  ;;
+4)
   install_latam
   ;;
 esac
