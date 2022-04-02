@@ -126,7 +126,7 @@ fun_trans() {
 }
 function_verify() {
 
-   v1=$(curl -sSL "https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version")
+   v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version")
    echo "$v1" >/etc/versin_script
 }
 atualiza_fun() {
@@ -867,7 +867,7 @@ creditoss() {
    [[ -e ${SCPdir}/message.txt ]] && msg -bra " RESELLER AUTORIZADO: \n\033[1;96m $(cat ${SCPdir}/message.txt) "
    [[ -e ${SCPdir}/key.txt ]] && msg -bra " KEY DE REGISTRO:\n \033[1;93m $(cat ${SCPdir}/key.txt)"
    msg -bar
-   echo -ne "\033[1;97m        CAMBIOS DE LA VERSION 8.3\n"
+   echo -ne "\033[1;97m        CAMBIOS DE LA VERSION 8.5\n"
    echo -ne " - Compatible con Ubuntu's 14,16,18,20\n"
    echo -ne "        (Server live's ext 0.4)\n"
    echo -ne " - Compatibilidad Ubuntu 20, Squid,Openvpn,Dropbear\n"

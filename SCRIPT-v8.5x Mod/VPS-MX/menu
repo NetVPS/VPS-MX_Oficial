@@ -130,8 +130,8 @@ fun_trans() {
 }
 function_verify() {
 
-        echo "8.5x" >/etc/versin_script
-        echo "8.5x" >/etc/versin_script_new
+    v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version")
+    echo "$v1" >/etc/versin_script
 }
 atualiza_fun() {
     fun_ip

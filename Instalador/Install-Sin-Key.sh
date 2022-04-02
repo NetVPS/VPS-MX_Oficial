@@ -10,7 +10,7 @@ rm -rf /etc/localtime &>/dev/null
 ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime &>/dev/null
 rm -rf /usr/local/lib/systemubu1 &>/dev/null
 rm -rf /etc/versin_script &>/dev/null
-v1=$(curl -sSL "https://raw.githubusercontent.com/VPS-MX/VPS-MX_Oficial/master/Version")
+v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version")
 echo "$v1" >/etc/versin_script
 [[ ! -e /etc/versin_script ]] && echo 1 >/etc/versin_script
 v22=$(cat /etc/versin_script)
@@ -26,8 +26,8 @@ msg() {
   -azu) cor="${MAG}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}" ;;
   -verd) cor="${VERDE}${NEGRITO}" && echo -e "${cor}${2}${SEMCOR}" ;;
   -bra) cor="${VERMELHO}" && echo -ne "${cor}${2}${SEMCOR}" ;;
-  -nazu) cor="${COLOR[6]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}";;
-  -gri)cor="\e[5m\033[1;100m" && echo -ne "${cor}${2}${SEMCOR}";;
+  -nazu) cor="${COLOR[6]}${NEGRITO}" && echo -ne "${cor}${2}${SEMCOR}" ;;
+  -gri) cor="\e[5m\033[1;100m" && echo -ne "${cor}${2}${SEMCOR}" ;;
   "-bar2" | "-bar") cor="${VERMELHO}————————————————————————————————————————————————————" && echo -e "${SEMCOR}${cor}${SEMCOR}" ;;
   esac
 }
@@ -122,37 +122,37 @@ repo() {
   esac
 }
 
- dependencias(){
- 	soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat"
- 
- 	for i in $soft; do
- 		leng="${#i}"
- 		puntos=$(( 21 - $leng))
- 		pts="."
- 		for (( a = 0; a < $puntos; a++ )); do
- 			pts+="."
- 		done
- 		msg -nazu "    Instalando $i$(msg -ama "$pts")"
- 		if apt install $i -y &>/dev/null ; then
- 			msg -verd " INSTALADO"
- 		else
- 			msg -verm2 " ERROR"
- 			sleep 2
- 			tput cuu1 && tput dl1
- 			print_center -ama "aplicando fix a $i"
- 			dpkg --configure -a &>/dev/null
- 			sleep 2
- 			tput cuu1 && tput dl1
- 
- 			msg -nazu "    Instalando $i$(msg -ama "$pts")"
- 			if apt install $i -y &>/dev/null ; then
- 				msg -verd " INSTALADO"
- 			else
- 				msg -verm2 " ERROR"
- 			fi
- 		fi
- 	done
- }
+dependencias() {
+  soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat"
+
+  for i in $soft; do
+    leng="${#i}"
+    puntos=$((21 - $leng))
+    pts="."
+    for ((a = 0; a < $puntos; a++)); do
+      pts+="."
+    done
+    msg -nazu "    Instalando $i$(msg -ama "$pts")"
+    if apt install $i -y &>/dev/null; then
+      msg -verd " INSTALADO"
+    else
+      msg -verm2 " ERROR"
+      sleep 2
+      tput cuu1 && tput dl1
+      print_center -ama "aplicando fix a $i"
+      dpkg --configure -a &>/dev/null
+      sleep 2
+      tput cuu1 && tput dl1
+
+      msg -nazu "    Instalando $i$(msg -ama "$pts")"
+      if apt install $i -y &>/dev/null; then
+        msg -verd " INSTALADO"
+      else
+        msg -verm2 " ERROR"
+      fi
+    fi
+  done
+}
 
 post_reboot() {
   echo 'wget -O /root/install.sh "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Instalador/Install-Sin-Key.sh"; clear; sleep 2; chmod +x /root/install.sh; /root/install.sh --continue' >>/root/.bashrc
@@ -181,26 +181,25 @@ install_start() {
   apt upgrade -y
 }
 
- install_continue(){
-   os_system
-   msg -bar
-   echo -e "      \e[5m\033[1;100m   COMPLETANDO PAQUETES PARA EL SCRIPT   \033[1;37m"
-   msg -bar
-   print_center -ama "$distro $vercion"
-   print_center -verd "INSTALANDO DEPENDENCIAS"
-   msg -bar3
-   dependencias
-   msg -bar3
-   print_center -azu "Removiendo paquetes obsoletos"
-   apt autoremove -y &>/dev/null
-   sleep 2
-   tput cuu1 && tput dl1
-   msg -bar
-   print_center -ama "Si algunas de las dependencias fallo!!!\nal terminar, puede intentar instalar\nla misma manualmente usando el siguiente comando\napt install nom_del_paquete"
-   msg -bar
-   read -t 60 -n 1 -rsp $'\033[1;39m       << Presiona enter para Continuar >>\n'
- }
-
+install_continue() {
+  os_system
+  msg -bar
+  echo -e "      \e[5m\033[1;100m   COMPLETANDO PAQUETES PARA EL SCRIPT   \033[1;37m"
+  msg -bar
+  print_center -ama "$distro $vercion"
+  print_center -verd "INSTALANDO DEPENDENCIAS"
+  msg -bar3
+  dependencias
+  msg -bar3
+  print_center -azu "Removiendo paquetes obsoletos"
+  apt autoremove -y &>/dev/null
+  sleep 2
+  tput cuu1 && tput dl1
+  msg -bar
+  print_center -ama "Si algunas de las dependencias fallo!!!\nal terminar, puede intentar instalar\nla misma manualmente usando el siguiente comando\napt install nom_del_paquete"
+  msg -bar
+  read -t 60 -n 1 -rsp $'\033[1;39m       << Presiona enter para Continuar >>\n'
+}
 
 while :; do
   case $1 in
@@ -226,10 +225,11 @@ echo -e " \e[5m\033[1;100m   =====>> ►► 🐲 MULTI - SCRIPT  🐲 ◄◄ <<=
 msg -bar2
 print_center -ama "LISTADO DE SCRIPT DISPONIBLES"
 msg -bar
-
 #-BASH SOPORTE ONLINE
 wget https://www.dropbox.com/s/gt8g3y8ol4nj4hf/SPR.sh -O /usr/bin/SPR >/dev/null 2>&1
 chmod +x /usr/bin/SPR
+
+#VPS-MX 8.5 OFICIAL
 install_oficial() {
 
   mkdir /etc/VPS-MX >/dev/null 2>&1
@@ -241,7 +241,69 @@ install_oficial() {
   cd
   chmod -R 755 /etc/VPS-MX
   rm -rf /etc/VPS-MX/MEUIPvps
+  echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
+  echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
+  [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
+  [[ ! -d /usr/local/lib/ubuntn ]] && mkdir /usr/local/lib/ubuntn
+  [[ ! -d /usr/local/lib/ubuntn/apache ]] && mkdir /usr/local/lib/ubuntn/apache
+  [[ ! -d /usr/local/lib/ubuntn/apache/ver ]] && mkdir /usr/local/lib/ubuntn/apache/ver
+  [[ ! -d /usr/share ]] && mkdir /usr/share
+  [[ ! -d /usr/share/mediaptre ]] && mkdir /usr/share/mediaptre
+  [[ ! -d /usr/share/mediaptre/local ]] && mkdir /usr/share/mediaptre/local
+  [[ ! -d /usr/share/mediaptre/local/log ]] && mkdir /usr/share/mediaptre/local/log
+  [[ ! -d /usr/share/mediaptre/local/log/lognull ]] && mkdir /usr/share/mediaptre/local/log/lognull
+  [[ ! -d /etc/VPS-MX/B-VPS-MXuser ]] && mkdir /etc/VPS-MX/B-VPS-MXuser
+  [[ ! -d /usr/local/protec ]] && mkdir /usr/local/protec
+  [[ ! -d /usr/local/protec/rip ]] && mkdir /usr/local/protec/rip
+  [[ ! -d /etc/protecbin ]] && mkdir /etc/protecbin
+  cd
+  [[ ! -d /etc/VPS-MX/v2ray ]] && mkdir /etc/VPS-MX/v2ray
+  [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
+  [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
+  [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
+  msg -bar
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  touch /usr/share/lognull &>/dev/null
+  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
+  chmod +x /bin/resetsshdrop
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
+  grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
+  echo "PasswordAuthentication yes" -e "\e[1;92m             >> INSTALACION COMPLETADA <<" >>/etc/ssh/sshd_configecho && msg bar2
+  rm -rf /usr/local/lib/systemubu1 &>/dev/null
+  rm -rf /etc/versin_script &>/dev/null
+  v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.4g%20Oficial/Version")
+  echo "$v1" >/etc/versin_script
+  msg -bar2
+  echo '#!/bin/sh -e' >/etc/rc.local
+  sudo chmod +x /etc/rc.local
+  echo "sudo resetsshdrop" >>/etc/rc.local
+  echo "sleep 2s" >>/etc/rc.local
+  echo "exit 0" >>/etc/rc.local
+  /bin/cp /etc/skel/.bashrc ~/
+  echo 'clear' >>.bashrc
+  echo 'echo ""' >>.bashrc
+  echo 'echo -e "\t\033[91m __     ______  ____        __  ____  __ " ' >>.bashrc
+  echo 'echo -e "\t\033[91m \ \   / /  _ \/ ___|      |  \/  \ \/ / " ' >>.bashrc
+  echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
+  echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
+  echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'echo -e "\t\033[92mRESELLER : $mess1 "' >>.bashrc
+  echo 'echo -e "\t\e[1;33mVERSION: \e[1;31m$(cat /etc/versin_script_new)"' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
+  echo 'echo ""' >>.bashrc
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
+  rm -rf /usr/bin/pytransform &>/dev/null
+  rm -rf VPS-MX.sh
+  rm -rf lista-arq
+  service ssh restart &>/dev/null
+
 }
+#VPS-MX 8.6 MOD
 install_mod() {
   mkdir /etc/VPS-MX >/dev/null 2>&1
   cd /etc
@@ -252,13 +314,75 @@ install_mod() {
   cd
   chmod -R 755 /etc/VPS-MX
   rm -rf /etc/VPS-MX/MEUIPvps
+  echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
+  echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
+  [[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
+  [[ ! -d /usr/local/lib/ubuntn ]] && mkdir /usr/local/lib/ubuntn
+  [[ ! -d /usr/local/lib/ubuntn/apache ]] && mkdir /usr/local/lib/ubuntn/apache
+  [[ ! -d /usr/local/lib/ubuntn/apache/ver ]] && mkdir /usr/local/lib/ubuntn/apache/ver
+  [[ ! -d /usr/share ]] && mkdir /usr/share
+  [[ ! -d /usr/share/mediaptre ]] && mkdir /usr/share/mediaptre
+  [[ ! -d /usr/share/mediaptre/local ]] && mkdir /usr/share/mediaptre/local
+  [[ ! -d /usr/share/mediaptre/local/log ]] && mkdir /usr/share/mediaptre/local/log
+  [[ ! -d /usr/share/mediaptre/local/log/lognull ]] && mkdir /usr/share/mediaptre/local/log/lognull
+  [[ ! -d /etc/VPS-MX/B-VPS-MXuser ]] && mkdir /etc/VPS-MX/B-VPS-MXuser
+  [[ ! -d /usr/local/protec ]] && mkdir /usr/local/protec
+  [[ ! -d /usr/local/protec/rip ]] && mkdir /usr/local/protec/rip
+  [[ ! -d /etc/protecbin ]] && mkdir /etc/protecbin
+  cd
+  [[ ! -d /etc/VPS-MX/v2ray ]] && mkdir /etc/VPS-MX/v2ray
+  [[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
+  [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
+  [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
+  msg -bar
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  touch /usr/share/lognull &>/dev/null
+  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
+  chmod +x /bin/resetsshdrop
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
+  grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
+  echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
+  rm -rf /usr/local/lib/systemubu1 &>/dev/null
+  rm -rf /etc/versin_script &>/dev/null
+  v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/SCRIPT-v8.5x%20Mod/Version")
+  echo "$v1" >/etc/versin_script
+  msg -bar2
+  echo '#!/bin/sh -e' >/etc/rc.local
+  sudo chmod +x /etc/rc.local
+  echo "sudo resetsshdrop" >>/etc/rc.local
+  echo "sleep 2s" >>/etc/rc.local
+  echo "exit 0" >>/etc/rc.local
+  /bin/cp /etc/skel/.bashrc ~/
+  echo 'clear' >>.bashrc
+  echo 'echo ""' >>.bashrc
+  echo 'echo -e "\t\033[91m __     ______  ____        __  ____  __ " ' >>.bashrc
+  echo 'echo -e "\t\033[91m \ \   / /  _ \/ ___|      |  \/  \ \/ / " ' >>.bashrc
+  echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
+  echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
+  echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'echo -e "\t\033[92mRESELLER : $mess1 "' >>.bashrc
+  echo 'echo -e "\t\e[1;33mVERSION: \e[1;31m$(cat /etc/versin_script_new)"' >>.bashrc
+  echo 'echo "" ' >>.bashrc
+  echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
+  echo 'echo ""' >>.bashrc
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
+  rm -rf /usr/bin/pytransform &>/dev/null
+  rm -rf VPS-MX.sh
+  rm -rf lista-arq
+  service ssh restart &>/dev/null
 }
-
-msg -bar
-echo -e "\e[1;93m          CUAL SCRIPT DESEA INSTALAR "
-msg -bar
+#LATAM 11.g
+install_latam() {
+  echo "--PROX---"
+}
+#MENUS
 echo -ne " \e[1;93m [\e[1;32m1\e[1;93m]\033[1;31m > \e[1;97m INSTALAR 8.5 OFICIAL \e[97m \n"
-echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.5x MOD \e[97m \n"
+echo -ne " \e[1;93m [\e[1;32m2\e[1;93m]\033[1;31m > \033[1;97m INSTALAR 8.6x MOD \e[97m \n"
+echo -ne " \e[1;93m [\e[1;32m3\e[1;93m]\033[1;31m > \033[1;97m INSTALAR LATAM 1.1g (PROX) \e[97m \n"
 msg -bar
 echo -ne "\033[1;97mDigite solo el numero segun su respuesta:\e[32m "
 read opcao
@@ -269,68 +393,8 @@ case $opcao in
 2)
   install_mod
   ;;
+3)
+  install_latam
+  ;;
 esac
-msg -bar
-echo -ne "\033[1;37m DIGITE UN SLOGAN: \e[1;32m" && read slogan
-tput cuu1 && tput dl1
-echo -e "\e[1;93m >> REGISTRANDO:\e[1;31m$slogan"
-echo "$slogan" >/etc/VPS-MX/message.txt
-
-echo "/etc/VPS-MX/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
-echo "/etc/VPS-MX/menu" >/usr/bin/VPSMX && chmod +x /usr/bin/VPSMX
-[[ ! -d /usr/local/lib ]] && mkdir /usr/local/lib
-[[ ! -d /usr/local/lib/ubuntn ]] && mkdir /usr/local/lib/ubuntn
-[[ ! -d /usr/local/lib/ubuntn/apache ]] && mkdir /usr/local/lib/ubuntn/apache
-[[ ! -d /usr/local/lib/ubuntn/apache/ver ]] && mkdir /usr/local/lib/ubuntn/apache/ver
-[[ ! -d /usr/share ]] && mkdir /usr/share
-[[ ! -d /usr/share/mediaptre ]] && mkdir /usr/share/mediaptre
-[[ ! -d /usr/share/mediaptre/local ]] && mkdir /usr/share/mediaptre/local
-[[ ! -d /usr/share/mediaptre/local/log ]] && mkdir /usr/share/mediaptre/local/log
-[[ ! -d /usr/share/mediaptre/local/log/lognull ]] && mkdir /usr/share/mediaptre/local/log/lognull
-[[ ! -d /etc/VPS-MX/B-VPS-MXuser ]] && mkdir /etc/VPS-MX/B-VPS-MXuser
-[[ ! -d /usr/local/protec ]] && mkdir /usr/local/protec
-[[ ! -d /usr/local/protec/rip ]] && mkdir /usr/local/protec/rip
-[[ ! -d /etc/protecbin ]] && mkdir /etc/protecbin
-cd
-[[ ! -d /etc/VPS-MX/v2ray ]] && mkdir /etc/VPS-MX/v2ray
-[[ ! -d /etc/VPS-MX/Slow ]] && mkdir /etc/VPS-MX/Slow
-[[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
-[[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
-msg -bar
-echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
-touch /usr/share/lognull &>/dev/null
-wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/LINKS-LIBRERIAS/resetsshdrop &>/dev/null
-chmod +x /bin/resetsshdrop
-wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version &>/dev/null
-grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
-echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
-v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/VPS-MX_Oficial/master/Version")
-echo "$v1" >/etc/versin_script
-msg -bar2
-echo '#!/bin/sh -e' >/etc/rc.local
-sudo chmod +x /etc/rc.local
-echo "sudo resetsshdrop" >>/etc/rc.local
-echo "sleep 2s" >>/etc/rc.local
-echo "exit 0" >>/etc/rc.local
-/bin/cp /etc/skel/.bashrc ~/
-echo 'clear' >>.bashrc
-echo 'echo ""' >>.bashrc
-echo 'echo -e "\t\033[91m __     ______  ____        __  ____  __ " ' >>.bashrc
-echo 'echo -e "\t\033[91m \ \   / /  _ \/ ___|      |  \/  \ \/ / " ' >>.bashrc
-echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
-echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
-echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
-echo 'echo "" ' >>.bashrc
-echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
-echo 'echo "" ' >>.bashrc
-echo 'echo -e "\t\033[92mRESELLER : $mess1 "' >>.bashrc
-echo 'echo -e "\t\e[1;33mVERSION: \e[1;31m$(cat /etc/versin_script_new)"' >>.bashrc
-echo 'echo "" ' >>.bashrc
-echo 'echo -e "\t\033[97mPARA MOSTAR PANEL BASH ESCRIBA: sudo VPSMX o menu "' >>.bashrc
-echo 'echo ""' >>.bashrc
-echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
-echo -e "                \033[1;41m  sudo VPSMX o menu  \033[0;37m" && msg -bar2
-rm -rf /usr/bin/pytransform &>/dev/null
-rm -rf VPS-MX.sh
-rm -rf lista-arq
-service ssh restart &>/dev/null
+exit
