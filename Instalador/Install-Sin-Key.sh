@@ -303,9 +303,9 @@ install_oficial() {
   rm -rf VPS-MX.sh
   rm -rf lista-arq
   service ssh restart &>/dev/null
+  clear && clear
   msg -bar
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
-  msg -bat
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 
@@ -384,8 +384,9 @@ install_mod() {
   rm -rf VPS-MX.sh
   rm -rf lista-arq
   service ssh restart &>/dev/null
+  clear && clear
+  msg -bar
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
-  msg -bat
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
@@ -430,9 +431,9 @@ install_ADMRufu() {
   echo 'clear && echo -e "\n$(figlet -f big.flf "  ADMRufu")\n        RESELLER : $mess1 \n\n   Para iniciar ADMRufu escriba:  menu \n\n   $v2\n\n"|lolcat' >>/etc/bash.bashrc
 
   update-locale LANG=en_US.UTF-8 LANGUAGE=en
-  clear
-    echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
-  msg -bat
+  clear && clear
+  msg -bar
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
@@ -528,8 +529,9 @@ install_ChumoGH() {
   echo "desactivado" >/bin/ejecutar/val1
   [[ -e /bin/ejecutar/menu_credito ]] && echo "" || echo "$(cat /etc/adm-lite/menu_credito)" >/bin/ejecutar/menu_credito && chmod +x /bin/ejecutar/menu_credito
   echo "Verified【 $(cat /bin/ejecutar/menu_credito)" >/bin/ejecutar/exito
+  clear && clear
+  msg -bar
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
-  msg -bat
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
 }
