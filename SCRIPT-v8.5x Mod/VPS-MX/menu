@@ -1269,7 +1269,7 @@ echo -e " \e[1;93m[\e[92m2\e[93m] $(msg -verm2 "➛ ") $(msg -azu "ADMINISTRAR C
 echo -e " \e[1;93m[\e[92m3\e[93m] $(msg -verm2 "➛ ") $(msg -azu "ADMINISTRAR CUENTAS | V2RAY --> $vra")"
 echo -e " \e[1;93m[\e[92m4\e[93m] $(msg -verm2 "➛ ") \e[1;31m\033[47mPROTOCOLOS\e[0m  \e[93m||  \e[1;37m\e[41mHERRAMIENTAS\e[0m"
 echo -e " \e[1;93m[\e[92m5\e[93m] $(msg -verm2 "➛ ") $(msg -azu "MONITOR DE PROTOCOLOS --------> ${monitorservi}")"
-echo -e " \e[1;93m[\e[92m6\e[93m] $(msg -verm2 "➛ ") $(msg -azu "AUTO INICIAR SCRIPT ----------> $AutoRun ")"
+echo -e " \e[1;93m[\e[92m6\e[93m] $(msg -verm2 "➛ ") $(msg -azu "AUTO INICIAR SCRIPT ----------> ${AutoRun}")"
 msg -bar
 echo -e " \e[1;93m[\e[92m7\e[93m] \e[97m$(msg -verm2 "➛ ") $(msg -verd "ACTUALIZAR") \e[1;93m [\e[92m8\e[93m]\e[97m$(msg -verm2 "➛ ")\033[1;31mDESINSTALAR  \e[1;93m[\e[92m0\e[93m]$(msg -verm2 "➛ ") $(msg -bra "\e[97m\033[1;41mSALIR")"
 msg -bar
