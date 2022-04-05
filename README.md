@@ -17,4 +17,9 @@
  SCRIPT VPS&bull;MX 8.6x -- |  _ACTUALIZADO EL 04/2022 >> POSIBLE RENOMBRE LACASITAMX_    
  SCRIPT ADMrufu 31-03-2022  |  _ACTUALIZADO EL 04/2022 _ 
  SCRIPT ChumoGH 8.6x ------ |  _ACTUALIZADO EL 04/2022 _ 
- SCRIPT LATAM 1.1G -------- |  _ACTUALIZADO EL 04/2022 _             
+ SCRIPT LATAM 1.1G -------- |  _ACTUALIZADO EL 04/2022 _     
+ 
+------------------------------------------------------------------
+SE AGRADECE CUALQUIER DONACION
+```3M8zaTvkVYkz87jeDmpAMBCiQsRrKff3qk```
+ 
