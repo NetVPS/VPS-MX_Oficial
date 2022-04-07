@@ -22,7 +22,7 @@
  ❗ Cualquier error avisar en el Grupo TG
 ------------------------------------------------------------------
 
-GRUPO DE TELEGRAM: https://t.me/+1fp34wkxTL8xNzIx
+GRUPO DE TELEGRAM: https://t.me/+HyiGQFE3BhZhZmMx
 
 ------------------------------------------------------------------
 😋 SE AGRADECE CUALQUIER DONACION       
