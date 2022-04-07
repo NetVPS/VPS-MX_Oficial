@@ -24,11 +24,9 @@
 
 GRUPO DE TELEGRAM: https://t.me/+1fp34wkxTL8xNzIx
 
-😋 SE AGRADECE CUALQUIER DONACION 
-
+------------------------------------------------------------------
+😋 SE AGRADECE CUALQUIER DONACION       
 BTC
 ```3M8zaTvkVYkz87jeDmpAMBCiQsRrKff3qk```    
 LTC
 ```MA8nZyyQbMY3MRhZ7Qka6wEMjkGR6zjha1```   
-
-
