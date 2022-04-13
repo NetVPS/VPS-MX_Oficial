@@ -15,7 +15,7 @@
 
  SCRIPT VPS&bull;MX 8.5 --- |  11-11-21      
  SCRIPT VPS&bull;MX 8.6x -- |  11-04-22        
- SCRIPT ADMrufu 31-03-2022  |  11-04-22          
+ SCRIPT ADMrufu 11-04-2022  |  11-04-22          
  SCRIPT ChumoGH 4.8x ------ |  11-04-22          
  SCRIPT LATAM 1.1G -------- |  04-04-22          
  
