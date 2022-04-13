@@ -5,13 +5,13 @@ clear
 SCPdir="/etc/VPS-MX"
 SCPfrm="${SCPdir}/herramientas" && [[ ! -d ${SCPfrm} ]] && exit
 SCPinst="${SCPdir}/protocolos" && [[ ! -d ${SCPinst} ]] && exit
-declare -A cor=([0]="\ 033[1;37m" [1]="\ 033[1;34m" [2]="\ 033[1;31m" [3]="\ 033[1;33m" [4]="\ 033[1;32m")
+declare -A cor=([0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;33m" [4]="\033[1;32m")
 mportas() {
     unset portas
     portas_var=$(lsof -V -i tcp -P -n | grep -v "ESTABLISHED" | grep -v "COMMAND" | grep "LISTEN")
     while read port; do
         var1=$(echo $port | awk '{print $1}') && var2=$(echo $port | awk '{print $9}' | awk -F ":" '{print $2}')
-        [[ "$(echo -e $portas | grep "$var1 $var2")" ]] || portas+="$var1 $var2\ n"
+        [[ "$(echo -e $portas | grep "$var1 $var2")" ]] || portas+="$var1 $var2\n"
     done <<<"$portas_var"
     i=1
     echo -e "$portas"
@@ -20,7 +20,7 @@ fun_ip() {
     if [[ -e /etc/VPS-MX/MEUIPvps ]]; then
         IP="$(cat /etc/VPS-MX/MEUIPvps)"
     else
-        MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\ .[0-9]{1,3}\ .[0-9]{1,3}\ .[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\ .[0-9]{1,3}\ .[0-9]{1,3}\ .[0-9]{1,3}' | head -1)
+        MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
         MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
         [[ "$MEU_IP" != "$MEU_IP" ]] && IP="$MEU_IP2" || IP="$MEU_IP"
         echo "$MEU_IP" >/etc/VPS-MX/MEUIPvps
@@ -59,52 +59,52 @@ fun_bar() {
     >/dev/null
     pid=$!
     while [[ -d /proc/$pid ]]; do
-        echo -ne " \ 033[1;33m["
+        echo -ne " \033[1;33m["
         for ((i = 0; i < 20; i++)); do
-            echo -ne "\ 033[1;31m##"
+            echo -ne "\033[1;31m##"
             sleep 0.8
         done
-        echo -ne "\ 033[1;33m]"
+        echo -ne "\033[1;33m]"
         sleep 1s
         echo
         tput cuu1 && tput dl1
     done
-    echo -ne " \ 033[1;33m[\ 033[1;31m########################################\ 033[1;33m] - \ 033[1;32m100%\ 033[0m\ n"
+    echo -ne " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m\n"
     sleep 1s
 }
 fun_dropbear() {
     [[ -e /etc/default/dropbear ]] && {
         msg -bar
-        echo -e "\ 033[1;32m $(fun_trans ${id} "REMOVIENDO DROPBEAR")"
+        echo -e "\033[1;32m $(fun_trans ${id} "REMOVIENDO DROPBEAR")"
         msg -bar
         service dropbear stop &
         >/dev/null 2>&1
         fun_bar "apt-get remove dropbear -y"
         msg -bar
-        echo -e "\ 033[1;32m $(fun_trans "Dropbear Removido")"
+        echo -e "\033[1;32m $(fun_trans "Dropbear Removido")"
         msg -bar
         [[ -e /etc/default/dropbear ]] && rm /etc/default/dropbear
         return 0
     }
     msg -bar
     msg -tit
-    echo -e "\ 033[1;32m $(fun_trans "   INSTALADOR DROPBEAR | VPS-MX")"
+    echo -e "\033[1;32m $(fun_trans "   INSTALADOR DROPBEAR | VPS-MX")"
     msg -bar
-    echo -e "\ 033[1;31m $(fun_trans "Seleccione Puertos Validados en orden secuencial:\ n")\ 033[1;32m 22 80 81 82 85 90\ 033[1;37m"
+    echo -e "\033[1;31m $(fun_trans "Seleccione Puertos Validados en orden secuencial:\n")\033[1;32m 22 80 81 82 85 90\033[1;37m"
     msg -bar
-    echo -ne "\ 033[1;31m $(fun_trans "Digite  Puertos"): \ 033[1;37m" && read DPORT
+    echo -ne "\033[1;31m $(fun_trans "Digite  Puertos"): \033[1;37m" && read DPORT
     tput cuu1 && tput dl1
     TTOTAL=($DPORT)
     for ((i = 0; i < ${#TTOTAL[@]}; i++)); do
         [[ $(mportas | grep "${TTOTAL[$i]}") = "" ]] && {
-            echo -e "\ 033[1;33m $(fun_trans "Puerto Elegido:")\ 033[1;32m ${TTOTAL[$i]} OK"
+            echo -e "\033[1;33m $(fun_trans "Puerto Elegido:")\033[1;32m ${TTOTAL[$i]} OK"
             PORT="$PORT ${TTOTAL[$i]}"
         } || {
-            echo -e "\ 033[1;33m $(fun_trans "Puerto Elegido:")\ 033[1;31m ${TTOTAL[$i]} FAIL"
+            echo -e "\033[1;33m $(fun_trans "Puerto Elegido:")\033[1;31m ${TTOTAL[$i]} FAIL"
         }
     done
     [[ -z $PORT ]] && {
-        echo -e "\ 033[1;31m $(fun_trans "Ningun Puerto Valida Fue Elegido")\ 033[0m"
+        echo -e "\033[1;31m $(fun_trans "Ningun Puerto Valida Fue Elegido")\033[0m"
         return 1
     }
     #sysvar=$(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //' | grep -o Ubuntu)
@@ -140,7 +140,7 @@ fun_dropbear() {
     msg -bar
     echo -e "${cor[2]} $(fun_trans ${id} "Iniciando Instalacion dropbear")"
     msg -bar
-    apt-get install dropbear -y &>/dev/null && echo -e "\ 033[1;33m[\ 033[1;31mINSTALANDO DROPBEAR\ 033[1;33m] - \ 033[1;32m100%\ 033[0m" | pv -qL10
+    apt-get install dropbear -y &>/dev/null && echo -e "\033[1;33m[\033[1;31mINSTALANDO DROPBEAR\033[1;33m] - \033[1;32m100%\033[0m" | pv -qL10
     msg -bar
     [[ ! -d /etc/dropbear ]] && mkdir /etc/dropbear
     touch /etc/dropbear/banner
