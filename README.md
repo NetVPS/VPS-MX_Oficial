@@ -13,8 +13,20 @@
 
 ------------------------------------------------------------------
 
- SCRIPT VPS&bull;MX 8.5 --- |  _SCRIPT FINALIZADO EN NOVIEMBRE 2021_         
- SCRIPT VPS&bull;MX 8.6x -- |  _ACTUALIZADO EL 11/2022 >> POSIBLE RENOMBRE LACASITAMX_    
- SCRIPT ADMrufu 11-04-2022  |  _ACTUALIZADO EL 11/2022 _ 
- SCRIPT ChumoGH 8.6x ------ |  _ACTUALIZADO EL 04/2022 _ 
- SCRIPT LATAM 1.1g -------- |  _ACTUALIZADO EL 04/2022 _             
+ SCRIPT VPS&bull;MX 8.5 --- |  11-11-21
+ SCRIPT VPS&bull;MX 8.6x -- |  04-04-22
+ SCRIPT ADMrufu 31-03-2022  |  04-04-22
+ SCRIPT ChumoGH 4.8x ------ |  04-04-22
+ SCRIPT LATAM 1.1G -------- |  04-04-22
+ 
+ ❗ Cualquier error avisar en el Grupo TG
+------------------------------------------------------------------
+
+GRUPO DE TELEGRAM: https://t.me/+HyiGQFE3BhZhZmMx
+
+------------------------------------------------------------------
+😋 SE AGRADECE CUALQUIER DONACION       
+BTC
+```3M8zaTvkVYkz87jeDmpAMBCiQsRrKff3qk```    
+LTC
+```MA8nZyyQbMY3MRhZ7Qka6wEMjkGR6zjha1```   
