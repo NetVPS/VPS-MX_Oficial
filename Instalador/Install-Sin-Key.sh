@@ -123,7 +123,7 @@ repo() {
 }
 
 dependencias() {
-  soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof pv boxes nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat"
+  soft="sudo bsdmainutils zip unzip ufw curl python python3 python3-pip openssl screen cron iptables lsof pv boxes nano at mlocate gawk grep bc jq curl npm nodejs socat netcat netcat-traditional net-tools cowsay figlet lolcat apache2"
 
   for i in $soft; do
     leng="${#i}"
@@ -191,6 +191,8 @@ install_continue() {
   msg -bar3
   dependencias
   msg -bar3
+  sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf >/dev/null 2>&1
+  service apache2 restart >/dev/null 2>&1
   print_center -azu "Removiendo paquetes obsoletos"
   apt autoremove -y &>/dev/null
   sleep 2
